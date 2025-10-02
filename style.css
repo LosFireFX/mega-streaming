@@ -1,0 +1,111 @@
+/* ====== GRID SUR LE BODY (pas de modif HTML) ====== */
+body{
+  margin: 0;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  background: linear-gradient(#5e4caa,#27296d);
+  color: #a393eb;
+
+  /* Grid layout */
+  display: grid;
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  gap: 24px;
+  grid-template-areas:
+    "header header header"
+    "btn    btn    btn"
+    "movie  anime  iptv"
+    "finder finder finder"
+    "vald   vald   vald";
+  padding: 0 16px 40px;
+}
+
+/* Zones */
+h1{ grid-area: header; text-align: center; text-decoration: underline; font-size: 45px; margin: 16px 0 0; }
+.btn{ grid-area: btn; text-align: center; }
+.movie{ grid-area: movie; }
+.anime{ grid-area: anime; }
+.iptv{ grid-area: iptv; }
+.finder{ grid-area: finder; text-align: center; }
+.vald{ grid-area: vald; text-align: center; margin-top: 10px; }
+
+/* Cartes propres pour movie/anime/iptv */
+.movie, .anime, .iptv{
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(244,169,247,0.25);
+  border-radius: 16px;
+  padding: 18px 16px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.15);
+  backdrop-filter: blur(2px);
+}
+.movie h2, .anime h2, .iptv h2{
+  margin: 0 0 12px 0;
+  text-align: center;
+  font-size: 22px;
+}
+
+/* Liens stables au hover */
+.movie a, .anime a, .iptv a, .finder a{
+  font-size: 16px;
+  display: block;
+  width: fit-content;
+  margin: 8px auto;           /* centre proprement */
+  color: #f5c7f7;
+  text-decoration: none;
+  transition: transform .12s ease, color .12s ease, text-shadow .12s ease;
+  transform-origin: left center;
+}
+.movie a:hover, .anime a:hover, .iptv a:hover, .finder a:hover{
+  transform: translateY(-1px) scale(1.04);
+  color: #f4a9f7;
+  text-shadow: 0 1px 10px rgba(244,169,247,0.25);
+}
+
+/* Bouton */
+button{
+  color: whitesmoke;
+  background-color: #27296d;
+  border: 1px #f4a9f7 solid;
+  border-radius: 14px;
+  margin-top: 16px;
+  padding: 0 18px;
+  height: 42px;
+  transition: box-shadow 150ms ease, transform 80ms ease;
+}
+button:hover{ box-shadow: 0 8px 28px rgba(163,147,235,0.45); }
+button:active{ transform: translateY(1px); }
+
+/* Avatar */
+.vald img{
+  width: 220px; height: 220px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: inline-block;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+}
+
+/* Responsive : 2 colonnes puis 1 */
+@media (max-width: 1024px){
+  body{
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+    grid-template-areas:
+      "header header"
+      "btn    btn"
+      "movie  anime"
+      "iptv   iptv"
+      "finder finder"
+      "vald   vald";
+  }
+}
+@media (max-width: 640px){
+  body{
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "btn"
+      "movie"
+      "anime"
+      "iptv"
+      "finder"
+      "vald";
+  }
+  .movie h2, .anime h2, .iptv h2{ text-align: center; }
+}
